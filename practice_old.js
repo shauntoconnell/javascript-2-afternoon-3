@@ -29,6 +29,10 @@
 
 // Code Here 
 
+function first (array, callback) {
+  callback(array[0]);
+};
+
 // Do not edit the code below.
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 
@@ -38,9 +42,7 @@ first(names, function(firstName){
 });
 // Do not edit the code above.
 
-function first(arr, cb) {
-  return cb(arr[0]);
-}
+
 
 ////////// PROBLEM 2 //////////
 
@@ -51,6 +53,10 @@ function first(arr, cb) {
 
 //Code Here
 
+function last (array, callback) {
+  callback(array[array.length-1]);
+};
+
 // Do not edit the code below.
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -58,9 +64,7 @@ last(names, function(lastName){
 });
 // Do not edit the code above.
 
-function last(arr, cb) {
-  cb(arr[arr.length-1]);
-}
+
 
 ////////// PROBLEM 3 //////////
 
@@ -77,9 +81,9 @@ multiply(4, 3, function(answer){
 });
 // Do not edit the code above.
 
-function multiply(n1, n2, cb) {
-  return cb(n1*n2);
-}
+function multiply (n1, n2, cb) {
+  cb(n1*n2);
+};
 
 ////////// PROBLEM 4 //////////
 
@@ -102,9 +106,14 @@ contains(names, 'Colt', function(result){
 });
 // Do not edit the code above.
 
-function contains(arr, str, cb) {
-  return cb(arr.includes(str));
-}
+function contains (arr, name, cb) {
+  // if(arr.includes(name)) {
+  //   cb(true);
+  // } else {
+  //   cb(false);
+  // };
+  arr.includes(name) ? cb(true) : cb(false);
+};
 
 ////////// PROBLEM 5 //////////
 
@@ -115,22 +124,25 @@ function contains(arr, str, cb) {
 
 //Code Here
 
+function uniq (arr, cb) {
+
+  const uniqArr = [];
+
+  for( i=0; i<arr.length; i++){
+    if (!uniqArr.includes(arr[i])) {
+      uniqArr.push(arr[i]);
+    };
+  };
+  return cb(uniqArr);
+};
+
 // Do not edit the code below.
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
 });
 // Do not edit the code above.
 
-const test = [ 'alice', 'bob', 'alice', 'charlie', 'alice', 'danielle', 'alice', 'tester' ];
 
-function uniq(arr, cb) {
-  const store = [];
-  for (var i = arr.length - 1; i >= 0; i--) {
-    console.log(i);
-    store.includes(arr[i]) ? arr.splice(i, 1) : store.push(arr[i]);
-  }
-  cb(arr);
-}
 
 ////////// PROBLEM 6 //////////
 
@@ -147,22 +159,27 @@ each(names, function(item, indice){
 });
 // Do not edit the code above.
 
-function each(arr, cb) {
-  arr.forEach((e,i) => cb(e,i));
-}
+function each(arr,cb) {
+  arr.forEach((v,i) => cb(v,i));
+};
 
 ////////// PROBLEM 7 //////////
 
 /*
-  Write a function called getUserById that takes in three parameters: an array of objects (users), an id and a callback, and searches for the user with a matching id.
+  Write a function called getUserById that takes in three parameters: 
+  an array of objects (users), an id and a callback, and searches for the user with a matching id.
   When the correct user object is found, invoke the callback with the user object as an argument.
 */
 
 // Code here
 
-function getUserById(objArr, id, cb) {
-  objArr.forEach(obj => obj.id === id ? cb(obj) : null);
-}
+function getUserById (arr,id,cb) {
+  arr.forEach(v => {
+    if (id == v.id) {
+      return cb(v);
+    };
+  });
+};
 
 // Do not edit the code below.
 var users = [
